@@ -1,9 +1,7 @@
 package middlewares
 
 import (
-	"log"
 	"net/http"
-	"runtime/debug"
 )
 
 func PanicRecoveryMiddleware(next http.Handler) http.Handler {
@@ -11,7 +9,6 @@ func PanicRecoveryMiddleware(next http.Handler) http.Handler {
 		defer func() {
 			err := recover()
 			if err != nil {
-				log.Println("[PANIC ERROR]", err, string(debug.Stack()))
 				w.WriteHeader(http.StatusInternalServerError)
 			}
 		}()

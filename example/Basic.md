@@ -1,24 +1,27 @@
+# Basic usage example
+
+```
 package main
 
 import (
-	"context"
-	"log"
-	"net/http"
+    "context"
+    "log"
+    "net/http"
 
-	"github.com/diegodesousas/httpserver/pkg/httprouter"
-	"github.com/diegodesousas/httpserver/server"
+    "github.com/diegodesousas/httpserver/pkg/httprouter"
+    "github.com/diegodesousas/httpserver/server"
 )
 
 func main() {
-	ctx := context.Background()
 
+    ctx := context.Background()
 	testRoute := server.Route{
-		Path:   "/test",
-		Method: http.MethodGet,
-		Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			log.Print("Ok")
+	    Path:   "/test",
+	    Method: http.MethodGet,
+	    Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		    log.Print("Ok")
 
-			_, err := w.Write([]byte("Ok"))
+		    _, err := w.Write([]byte("Ok"))
 			if err != nil {
 				return
 			}
@@ -52,3 +55,4 @@ func main() {
 		log.Fatal(err)
 	}
 }
+```
